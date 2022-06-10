@@ -3,5 +3,4 @@ tensorflow-cpu
 gunicorn
 numpy
 opencv-python-headless
-object_detection
 tensorflow_hub
