@@ -12,16 +12,7 @@ app.config['UPLOAD_FOLDER'] = './static/uploads/'
 model = hub.load('my_ssd_mobnet/export/saved_model').signatures['serving_default']
 
 def predict_label(img_path):
-    category_index = {1: {'id': 1, 'name': 'rendang'},
-                    2: {'id': 2, 'name': 'sate_madura'},
-                    3: {'id': 3, 'name': 'pempek'},
-                    4: {'id': 4, 'name': 'es_pisang_ijo'},
-                    5: {'id': 5, 'name': 'mie_aceh'},
-                    6: {'id': 6, 'name': 'gudeg'},
-                    7: {'id': 7, 'name': 'seblak'},
-                    8: {'id': 8, 'name': 'kerak_telor'},
-                    9: {'id': 9, 'name': 'ronde'},
-                    10: {'id': 10, 'name': 'bakso_malang'}}
+    category_index = ['rendang','sate_madura','pempek','es_pisang_ijo','mie_aceh','gudeg','seblak','kerak_telor','ronde','bakso_malang']
     
     img = cv2.imread(img_path)
     image_np = np.array(img)
@@ -37,7 +28,7 @@ def predict_label(img_path):
     # detection_classes should be ints.
     detections['detection_classes'] = detections['detection_classes'].astype(np.int64)
     
-    label = category_index[detections['detection_classes'][0]]['name']
+    label = category_index[detections['detection_classes'][0]]
    
     return label
 
