@@ -4,8 +4,6 @@ import os
 import cv2
 import tensorflow as tf
 import tensorflow_hub as hub
-from object_detection.utils import label_map_util
-
 
 
 app = Flask(__name__)
@@ -14,7 +12,16 @@ app.config['UPLOAD_FOLDER'] = './static/uploads/'
 model = hub.load('my_ssd_mobnet/export/saved_model').signatures['serving_default']
 
 def predict_label(img_path):
-    category_index = label_map_util.create_category_index_from_labelmap('labelmap.pbtxt')
+    category_index = {1: {'id': 1, 'name': 'rendang'},
+                    2: {'id': 2, 'name': 'sate_madura'},
+                    3: {'id': 3, 'name': 'pempek'},
+                    4: {'id': 4, 'name': 'es_pisang_ijo'},
+                    5: {'id': 5, 'name': 'mie_aceh'},
+                    6: {'id': 6, 'name': 'gudeg'},
+                    7: {'id': 7, 'name': 'seblak'},
+                    8: {'id': 8, 'name': 'kerak_telor'},
+                    9: {'id': 9, 'name': 'ronde'},
+                    10: {'id': 10, 'name': 'bakso_malang'}}
     
     img = cv2.imread(img_path)
     image_np = np.array(img)
