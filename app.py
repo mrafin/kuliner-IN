@@ -28,7 +28,7 @@ def predict_label(img_path):
     # detection_classes should be ints.
     detections['detection_classes'] = detections['detection_classes'].astype(np.int64)
     
-    label = category_index[detections['detection_classes'][0]]
+    label = category_index[detections['detection_classes'][0]-1]
    
     return label
 
