@@ -61,7 +61,7 @@ def infer_image():
         if request.files:
             image = request.files['file']
             img_path = os.path.join(app.config['UPLOAD_FOLDER'], image.filename)
-            # image.save(img_path)
+            image.save(img_path)
             # prediction = predict_label(img_path)
             prediction = predict_label(img_path)
             dicti = { 
